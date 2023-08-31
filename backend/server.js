@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_URI)
     })
 
 
-const server = new WebSocket.Server({ port: 3000 });
+const server = new WebSocket.Server({ port: 443 });
 
 server.on("connection", (socket) => {
     // receive a message from the client
