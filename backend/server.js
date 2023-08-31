@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const {WebSocketServer} = require('ws')
+const WebSocket = require('ws')
 const cors = require('cors')
 
 const app = express()
