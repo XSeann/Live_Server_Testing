@@ -6,7 +6,7 @@ const App = () => {
   const [text, setText] = useState('')
 
   const sendData = async () => {
-    const server = new WebSocket('ws://localhost:4000')
+    const server = new WebSocket('wss://live-server-testt.onrender.com')
 
     server.addEventListener("open", () => {
       // send a message to the server
