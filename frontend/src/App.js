@@ -17,16 +17,18 @@ const App = () => {
     });
 
     server.addEventListener("message", ({ data }) => {
-      const packet = JSON.parse(data);
+      //const packet = JSON.parse(data);
     
-      switch (packet.type) {
+      switch (data.type) {
         case "hello from server":
-        setDatas(e => [...e, packet])
+        setDatas(e => [...e, data])
         break;
       }
     });
   }
   
+
+
   return (
     <div className="App">
         <input

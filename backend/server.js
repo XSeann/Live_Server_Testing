@@ -26,11 +26,11 @@ mongoose.connect(process.env.MONGO_URI)
     })
 
 
-const server = new WebSocket.Server({ port: 443 });
+const wss = new WebSocket.Server({ port: 443 });
 
-server.on("connection", (socket) => {
+wss.on("connection", (ws) => {
     // receive a message from the client
-    socket.on("message", (data) => {
+    ws.on("message", (data) => {
         const packet = JSON.parse(data);
     
         switch (packet.type) {
@@ -38,12 +38,12 @@ server.on("connection", (socket) => {
             //sendMessage(packet)
             break;
         }
-
-        // send a message to the client
-        socket.send(JSON.stringify({
-            type: "hello from server",
-            content: packet.content
-        }));
     });
+
+    // send a message to the client
+    ws.send(JSON.stringify({
+        type: "hello from server",
+        content: "Hi!"
+    }));
 
 });
