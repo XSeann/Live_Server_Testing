@@ -1,12 +1,12 @@
 import { useState } from "react"
-
+import { io } from 'socket.io-client'
 
 const App = () => {
   const [datas, setDatas] = useState([])
   const [text, setText] = useState('')
 
   const sendData = async () => {
-    const server = new WebSocket('wss://live-server-testt.onrender.com')
+    /*const server = new WebSocket('wss://live-server-testt.onrender.com')
 
     server.addEventListener("open", () => {
       // send a message to the server
@@ -18,12 +18,21 @@ const App = () => {
 
     server.addEventListener("message", ({ data }) => {
       //const packet = JSON.parse(data);
-    
       switch (data.type) {
         case "hello from server":
         setDatas(e => [...e, data])
         break;
       }
+    });*/
+
+    const socket = io("ws://localhost:4000");
+
+    // send a message to the server
+    socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
+
+    // receive a message from the server
+    socket.on("hello from server", (...args) => {
+      console.log(args)
     });
   }
   
