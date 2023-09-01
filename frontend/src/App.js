@@ -25,7 +25,12 @@ const App = () => {
       }
     });*/
 
-    const socket = io("https://live-server-testt.onrender.com");
+    const socket = io("https://live-server-testt.onrender.com", {
+      withCredentials: true,
+      extraHeaders: {
+        "my-custom-header": "abcd"
+      }
+    });
 
     // send a message to the server
     socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
