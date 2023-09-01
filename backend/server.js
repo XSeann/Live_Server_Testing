@@ -54,7 +54,7 @@ const {Server} = require('socket.io')
 const httpServer = createServer()
 const io = new Server(httpServer, {
     cors: {
-        origin: ["https://live-server-testing.netlify.app/", "http://localhost:3000"]
+        origin: ["https://live-server-testing.netlify.app", "http://localhost:3000"]
     }
   });
 
