@@ -58,8 +58,6 @@ const io = new Server(httpServer, {
     }
   });
 
-httpServer.listen("https://live-server-testing.netlify.app/")
-
 io.on("connection", (socket) => {
   // send a message to the client
   socket.emit("hello from server", 1, "2", { 3: Buffer.from([4]) });
@@ -69,4 +67,3 @@ io.on("connection", (socket) => {
     console.log(args)
   });
 });
-
