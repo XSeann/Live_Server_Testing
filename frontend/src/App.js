@@ -25,7 +25,7 @@ const App = () => {
       }
     });*/
 
-    const socket = io("ws://localhost:4000");
+    const socket = io("https://live-server-testt.onrender.com");
 
     // send a message to the server
     socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
