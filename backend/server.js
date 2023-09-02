@@ -49,7 +49,7 @@ wss.on("connection", (ws) => {
 });*/
 
 const {createServer} = require('http')
-const httpServer = createServer()
+const httpServer = createServer(app)
 const io = require('socket.io')(httpServer, {
     cors: {
         origin: '*'
