@@ -2,12 +2,14 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const WebSocket = require('ws')
+const {WebSocketServer} = require('ws')
 const cors = require('cors')
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+    origin: 'https://live-server-testing.netlify.app'
+}))
 
 app.use(express.json({limit: '50mb'}))
 app.use((req, res, next) => {
@@ -26,42 +28,42 @@ mongoose.connect(process.env.MONGO_URI)
     })
 
 
-/*const wss = new WebSocket.Server({ port: 443 });
+/*const server = new WebSocketServer({ port: 4000 });
 
-wss.on("connection", (ws) => {
-    // receive a message from the client
-    ws.on("message", (data) => {
-        const packet = JSON.parse(data);
-    
-        switch (packet.type) {
-            case "hello from client":
-            //sendMessage(packet)
-            break;
-        }
-    });
+server.on("connection", (socket) => {
 
+  // receive a message from the client
+  socket.on("message", (data) => {
+    const packet = JSON.parse(data);
+
+    switch (packet.type) {
+      case "hello from client":
+        console.log(packet)
+        send()
+        break;
+    }
+  });
+
+  const send = () => {
     // send a message to the client
-    ws.send(JSON.stringify({
-        type: "hello from server",
-        content: "Hi!"
-    }));
-
+  socket.send(JSON.stringify({
+    type: "hello from server",
+    content: [ 1, "2" ]
+  }));
+}
 });*/
 
 const {createServer} = require('http')
 const httpServer = createServer(app)
-const io = require('socket.io')(httpServer, {
-    cors: {
-        origin: '*'
-    }
-  });
+const io = require('socket.io')(httpServer);
 
 io.on("connection", (socket) => {
   // send a message to the client
-  socket.emit("hello from server", 1, "2", { 3: Buffer.from([4]) });
+  //socket.emit("hello from server", "kkk", "2", { 3: Buffer.from([4]) });
 
   // receive a message from the client
   socket.on("hello from client", (...args) => {
     console.log(args)
+    io.emit('hello from server', 'okkkk')
   });
 });
