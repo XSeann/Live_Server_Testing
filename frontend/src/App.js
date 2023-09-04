@@ -27,7 +27,7 @@ const App = () => {
       }
     });*/
 
-    const socket = io();
+    const socket = io(undefined);
 
     // send a message to the server
     socket.emit("hello from client", 5, "6", { 7: Uint8Array.from([8]) });
@@ -37,6 +37,7 @@ const App = () => {
       console.log(args)
       setDatas(e => [...e, args])
     });
+    console.log(0)
   }
   
 
