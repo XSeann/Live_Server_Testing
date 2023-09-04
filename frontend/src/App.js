@@ -37,7 +37,6 @@ const App = () => {
       console.log(args)
       setDatas(e => [...e, args])
     });
-    console.log(0)
   }
   
 

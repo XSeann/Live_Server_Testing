@@ -62,7 +62,7 @@ io.on("connection", (socket) => {
   //socket.emit("hello from server", "kkk", "2", { 3: Buffer.from([4]) });
 
   // receive a message from the client
-  socket.on("hello from client", (...args) => {
+  socket.on("hello from client", (args) => {
     console.log(args)
     io.emit('hello from server', 'okkkk')
   });
